@@ -1,0 +1,11 @@
+---
+name: app
+
+templates:
+ ctl: bin/ctl
+
+packages:
+- hello_bosh
+- node_v9.9.0
+
+properties:

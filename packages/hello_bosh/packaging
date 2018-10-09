@@ -1,0 +1,9 @@
+set -e
+
+cp -r hello_bosh/* ${BOSH_INSTALL_TARGET}
+
+cd ${BOSH_INSTALL_TARGET}
+
+find .
+
+/var/vcap/packages/node_v9.9.0/bin/node /var/vcap/packages/node_v9.9.0/bin/npm install

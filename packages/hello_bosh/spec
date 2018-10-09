@@ -1,0 +1,8 @@
+---
+name: hello_bosh
+
+dependencies:
+- node_v9.9.0
+
+files:
+- hello_bosh/**/*

@@ -1,0 +1,9 @@
+set -e
+
+tar xzf node_v9.9.0/node-v9.9.0.tar.gz
+pushd node-v9.9.0
+  ./configure --prefix=${BOSH_INSTALL_TARGET}
+
+  make -j4
+  make install
+popd

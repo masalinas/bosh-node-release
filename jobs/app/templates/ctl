@@ -1,0 +1,32 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/app
+LOG_DIR=/var/vcap/sys/log/app
+PIDFILE=${RUN_DIR}/pid
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    export PATH=/var/vcap/packages/node_v9.9.0/bin:$PATH
+
+    exec node /var/vcap/packages/hello_bosh/index.js \
+      >>  $LOG_DIR/app.stdout.log \
+      2>> $LOG_DIR/app.stderr.log
+
+    ;;
+
+  stop)
+    kill -9 `cat $PIDFILE`
+    rm -f $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" ;;
+
+esac
